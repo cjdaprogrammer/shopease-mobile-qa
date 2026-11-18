@@ -1,6 +1,7 @@
 # ShopEase Mobile QA Automation
 
 Automated UI tests for the ShopEase Android app (login, product list, cart, checkout).
+![Mobile tests](https://github.com/cjdaprogrammer/shopease-mobile-qa/actions/workflows/mobile-tests.yml/badge.svg)
 
 ## Tech stack
 - Java 17, Maven
