@@ -22,6 +22,19 @@ Automated UI tests for the ShopEase Android app (login, product list, cart, chec
 Reports: `target/cucumber-report.html` and `target/surefire-reports`.
 Screenshots of failures are saved to `screenshots/`.
 
+## Reports
+Run `allure serve target/allure-results` after `mvn test`.
+Cucumber report: `target/cucumber-report.html`.
+
+## Latest result
+19 tests (6 login, 7 cart/checkout, 6 Cucumber scenarios), all passing on an
+Android 15 emulator.
+
+## Known issues
+- `cartBadgeSurvivesBackNavigation` has been intermittently flaky on the emulator
+  (retried once automatically).
+- Each test restarts the app, so a full run takes about 5 minutes.
+
 ## Test credentials
 `standard_user` / `shop123`
 

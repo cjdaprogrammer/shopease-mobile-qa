@@ -73,4 +73,5 @@ public class CartTest extends BaseTest {
                 "Back should return to Products, but the current activity is: "
                         + driver.currentActivity());
         Assert.assertEquals(products.getCartBadge(), "Cart: 1");
+    }
 }
