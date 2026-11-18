@@ -17,6 +17,7 @@
         <selenium.version>4.35.0</selenium.version>
         <testng.version>7.11.0</testng.version>
         <cucumber.version>7.27.0</cucumber.version>
+        <allure.version>2.29.1</allure.version>
     </properties>
 
     <dependencies>
@@ -38,6 +39,13 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -76,9 +84,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.4</version>
                 <configuration>
+                <rerunFailingTestsCount>1</rerunFailingTestsCount>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

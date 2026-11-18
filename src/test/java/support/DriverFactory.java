@@ -29,6 +29,7 @@ public class DriverFactory {
             }
 
             options.setNoReset(false);
+            options.setCapability("appium:disableWindowAnimation", true);
             options.setNewCommandTimeout(Duration.ofSeconds(300));
 
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -44,4 +45,8 @@ public class DriverFactory {
             driver = null;
         }
     }
+
+    public static AndroidDriver peekDriver() {
+        return driver;
+    }   
 }

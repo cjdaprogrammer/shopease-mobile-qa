@@ -1,22 +1,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ShopEase Mobile QA">
-    <test name="Login and Cart">
-        <classes>
-            <class name="tests.LoginTest"/>
-            <class name="tests.CartTest"/>
-        </classes>
-    </test>
 
-    <test name="TestNG tests">
+    <listeners>
+        <listener class-name="support.TestListener"/>
+    </listeners>
+
+    <test name="ShopEase Android Tests">
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.CartTest"/>
-        </classes>
-    </test>
-    
-    <test name="Cucumber tests">
-        <classes>
             <class name="runners.TestRunner"/>
         </classes>
     </test>
+
 </suite>

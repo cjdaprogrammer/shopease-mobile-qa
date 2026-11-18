@@ -2,21 +2,32 @@ package pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CartPage {
     private final AndroidDriver driver;
 
     public CartPage(AndroidDriver driver) { this.driver = driver; }
 
+    private WebElement waitFor(String id) {
+        return new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.visibilityOfElementLocated(
+                        AppiumBy.id("com.shopease.app:id/" + id)));
+    }
+
     public String getCartCount() {
-        return driver.findElement(AppiumBy.id("com.shopease.app:id/cartCount")).getText();
+        return waitFor("cartCount").getText();
     }
 
     public void checkout() {
-        driver.findElement(AppiumBy.id("com.shopease.app:id/checkoutButton")).click();
+        waitFor("checkoutButton").click();
     }
 
     public String getConfirmation() {
-        return driver.findElement(AppiumBy.id("com.shopease.app:id/orderConfirmation")).getText();
+        return waitFor("orderConfirmation").getText();
     }
 }

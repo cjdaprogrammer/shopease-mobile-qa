@@ -4,3 +4,5 @@ screenshots/
 hs_err_pid*
 replay_pid*
 .vscode/
+allure-results/
+allure-report/
