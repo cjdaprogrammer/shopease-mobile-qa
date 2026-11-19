@@ -1,3 +1,4 @@
+
 name: Mobile tests
 
 on:
@@ -9,15 +10,19 @@ jobs:
   android-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+    steps:
+      - name: Checkout QA repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -32,7 +37,7 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: Run tests on emulator
+      - name: Run complete test suite
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
@@ -41,13 +46,13 @@ jobs:
           script: |
             nohup appium > appium.log 2>&1 &
             sleep 15
-            mvn -B test -Dtest=LoginTest -Dapk=${{ github.workspace }}/apps/shopease-debug.apk
+            mvn -B test -Dapk=${{ github.workspace }}/apps/shopease-debug.apk
 
-      - name: Upload results
+      - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: shopease-mobile-test-results
           path: |
             target/allure-results
             target/surefire-reports
